@@ -95,13 +95,14 @@ const Home = () => {
 
    
        GEEBalance = await GEE_contract.methods.balanceOf(address).call();    
+
        totalReward = await staking_contract.methods.get_TotalReward().call({ from: address });   
+
        user = await staking_contract.methods.user(address).call();      
        allInvestments = await staking_contract.methods.getAll_investments().call({from: address});
        allInvestments_reward = await staking_contract.methods.getAll_investments_forReward().call({from: address});
       isRegister = await staking_contract.methods.isRegister(address).call();    
       regFee = await staking_contract.methods.get_regFee(address).call();    
-
        let ref_count = await staking_contract.methods.referralLevel_count(address).call();    
        let ref_earn = await staking_contract.methods.referralLevel_earning(address).call();    
        set_refCount(ref_count)
@@ -110,9 +111,9 @@ const Home = () => {
     }
 
 
-   let totalsupply = await GEE_contract.methods.totalSupply().call();    
 
     //staking 
+    let totalsupply = await staking_contract.methods.get_CurrDaySupply().call();    
 
     let currTime = await staking_contract.methods.get_currTime().call();    
     let totalusers = await staking_contract.methods.totalusers().call();    

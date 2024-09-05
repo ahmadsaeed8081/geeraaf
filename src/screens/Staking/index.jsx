@@ -723,29 +723,48 @@ useEffect(()=>{
 
   return (
     <div className="tw-bg-center  tw-relative  tw-bg-cover tw-w-full tw-h-auto">
-      
+      {props.isRegister?
+      (
       <div className="container md:tw-py-24 tw-py-3">
         <div className="row tw-relative tw-items-center">
-        <div className={`col-lg-12 col-md-12 tw-mx-auto ${!props.isRegister ? 'tw-blur' : ''}`}>
-  <div className="mx-auto mt-8 mb-24 ">
-    <Tabs tabs={tabData} defaultTab={defaultTab} />
-   
-  </div>
-</div>
+          <div className="col-lg-12 col-md-12 tw-mx-auto">
+            <div className="mx-auto mt-8 mb-24 ">
+              <Tabs tabs={tabData} defaultTab={defaultTab} />
+ 
+            </div>
+          </div>
 
-<div className={`tw-absolute   tw-z-40 tw-top-1/2 tw-left-1/2 tw-transform tw--translate-x-1/2 tw--translate-y-1/2 tw-text-center ${props.isRegister?' tw-hidden':''} `}>
-      <h5>To UnLock Staking<br></br>Register yourself by paying 10$</h5>
-      <button
-        className="tw-bg-button-gradient text-black tw-font-semibold tw-text-white tw-px-5 tw-py-2 tw-rounded tw-mt-2"
-        onClick={Register}
-      
-      >
-        Register 
-      </button>
-    </div>
-    </div>
+        </div>
+      </div>
+
+      ):
+      (
+
+      <div className="container md:tw-py-24 tw-py-3">
+        <div className="row tw-relative tw-items-center">
+          <div className="col-lg-12 col-md-12 tw-mx-auto tw-blur">
+            <div className="mx-auto mt-8 mb-24 ">
+              <Tabs tabs={tabData} defaultTab={defaultTab} />
+   
+            </div>
+          </div>
+
+            <div className="tw-absolute   tw-z-40 tw-top-1/2 tw-left-1/2 tw-transform tw--translate-x-1/2 tw--translate-y-1/2 tw-text-center ">
+              <h5>To UnLock Staking<br></br>Register yourself by paying 10$</h5>
+            <button
+              className="tw-bg-button-gradient text-black tw-font-semibold tw-text-white tw-px-5 tw-py-2 tw-rounded tw-mt-2"
+              onClick={Register}
+            
+            >
+            Register 
+          </button>
+          </div>
+        </div>
 
       </div>
+
+      )}
+
      
     </div>
   );
