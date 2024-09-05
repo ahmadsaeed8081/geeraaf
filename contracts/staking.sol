@@ -38,9 +38,10 @@ contract GeeRaaf_Staking
        
         address  public owner;
         AggregatorV3Interface internal priceFeed;
-
-        address Staking_token= 0x21096FE3C6A5f484Ea9AE79cE338C3e7848ff8A0; 
-        address Reward_Token=  0x21096FE3C6A5f484Ea9AE79cE338C3e7848ff8A0; 
+         uint public initialSupply = 10000000000 ether;
+        uint public perDay_mintPercentage = 0.27 ether;
+        address Staking_token= 0xEB61e672efc82b0A92068683746113c8eD0f8DcE; 
+        address Reward_Token=  0xEB61e672efc82b0A92068683746113c8eD0f8DcE; 
         uint public regFeeinDollar= 10 ether;
         mapping(address=>bool) public isUser;
 
@@ -92,13 +93,13 @@ contract GeeRaaf_Staking
         mapping(address=>bool) public isRegister;
 
         mapping(address=>mapping(uint=>allInvestments)) public user_investments;
-
+        uint public launch_time;
         constructor(uint _id){
             
             owner=msg.sender;              
-            id==_id;
+            id=_id;
             priceFeed = AggregatorV3Interface(0xd30e2101a97dcbAeBCBC04F14C3f624E67A35165);
-
+            launch_time=block.timestamp;
 
 
 
@@ -132,7 +133,7 @@ contract GeeRaaf_Staking
                         temp = user[temp].upliner;
                         uint reward1 = ((percentage[j] * 1 ether) * _investedAmount)/100 ether;
                     
-                        Token(Staking_token).transferFrom(msg.sender,temp,reward1);
+                        // Token(Staking_token).transferFrom(msg.sender,temp,reward1);
 
 
                         user[temp].referralLevel[i].earning+=reward1 ;                  
@@ -146,7 +147,7 @@ contract GeeRaaf_Staking
 
                 } 
                                                     
-                Token(Staking_token).transferFrom(msg.sender,address(this),remaining);
+                // Token(Staking_token).transferFrom(msg.sender,address(this),remaining);
 
 
         }
@@ -155,9 +156,9 @@ contract GeeRaaf_Staking
 
         function Stake(uint _investedamount, address _ref) external  returns(bool success)
         {
-            require(isRegister[msg.sender],"not reg");
+            // require(isRegister[msg.sender],"not reg");
             require(_investedamount > 0,"value is not greater than 0"); 
-            require(Token(Staking_token).allowance(msg.sender,address(this))>=_investedamount,"allowance");
+            // require(Token(Staking_token).allowance(msg.sender,address(this))>=_investedamount,"allowance");
 
             if(user[msg.sender].investBefore == false)
             { 
@@ -188,9 +189,7 @@ contract GeeRaaf_Staking
             user[msg.sender].totalInvestment+=_investedamount;
             user[msg.sender].noOfInvestment++;
             totalbusiness+=_investedamount;
-
             sendRewardToReferrals( msg.sender, (_investedamount+fee));
-            // Token(Staking_token).transferFrom(msg.sender,address(this),_investedamount);
             user[msg.sender].investBefore=true;
 
             return true;
@@ -199,8 +198,9 @@ contract GeeRaaf_Staking
 
         function register(uint _id) external payable returns(bool success)
         {
-            require(!isRegister[msg.sender],"not reg");
-            require(id==_id);
+            require(!isRegister[msg.sender]);
+            require(_id==id,"id issue");
+            isRegister[msg.sender]=true;
             payable(owner).transfer(msg.value);
             return true;
 
@@ -256,14 +256,14 @@ contract GeeRaaf_Staking
                 depTime=depTime/per_day_divider; //1 day
                 if(depTime>0)
                 {
-                     uint launch_time = Token(Staking_token).launch_time();
-                    uint  start= (launch_time-user[msg.sender].investment[i].DepositTime)/per_day_divider;
+                    // uint launch_time = Token(Staking_token).launch_time();
+                    uint  start= (user[msg.sender].investment[i].DepositTime-launch_time)/per_day_divider;
                     for(uint j=start;j< (start+depTime);j++ )
                     {
-                        uint supply = Token(Staking_token).get_DaySupply(j);
-                        uint sharePercentage = 100 ether * user[msg.sender].investment[i].investedAmount /supply;
+                        uint supply = get_DaySupply(j);
+                        uint sharePercentage = (100 ether * user[msg.sender].investment[i].investedAmount) /supply;
 
-                        rew  +=  (supply * ((sharePercentage) )/ (100*10**18) );
+                        rew  +=  ((2700000 ether * sharePercentage )/ (100*10**18) );
 
                     }
                 }
@@ -289,14 +289,14 @@ contract GeeRaaf_Staking
                 depTime=depTime/per_day_divider; //1 day
                 if(depTime>0)
                 {
-                    uint launch_time = Token(Staking_token).launch_time();
-                    uint  start= (launch_time-user[add].investment[i].DepositTime)/per_day_divider;
+                    // uint launch_time = Token(Staking_token).launch_time();
+                    uint  start= (user[add].investment[i].DepositTime - launch_time)/per_day_divider;
                     for(uint j=start;j<(start+depTime);j++ )
                     {
-                        uint supply = Token(Staking_token).get_DaySupply(j);
+                        uint supply = get_DaySupply(j);
                         uint sharePercentage = 100 ether * user[add].investment[i].investedAmount /supply;
 
-                        rew  +=  (supply * ((sharePercentage) )/ (100*10**18) );
+                        rew  +=  (2700000 ether * ((sharePercentage) )/ (100*10**18) );
 
                     }
                 }
@@ -307,16 +307,6 @@ contract GeeRaaf_Staking
 
 
 
-        function withdrawReward() external returns (bool success){
-            uint Total_reward = get_TotalReward() - total_withdraw_reaward();
-            require(Total_reward>0,"you dont have rewards to withdrawn");         
-        
-            Token(Reward_Token).transfer(msg.sender,Total_reward);           
-            user[msg.sender].totalWithdraw_reward+=Total_reward;
-
-            return true;
-
-        }
 
 
 
@@ -340,6 +330,19 @@ contract GeeRaaf_Staking
             return true;
 
         }
+
+
+        function withdrawReward() external returns (bool success){
+            uint Total_reward = get_TotalReward() - user[msg.sender].totalWithdraw_reward;
+            require(Total_reward>0,"you dont have rewards to withdrawn");         
+        
+            Token(Reward_Token).transfer(msg.sender,Total_reward);           
+            user[msg.sender].totalWithdraw_reward+=Total_reward;
+
+            return true;
+
+        }
+
 
         function getTotalInvestment() public view returns(uint) {   //this function is to get the total investment of the ivestor
             
@@ -467,19 +470,12 @@ contract GeeRaaf_Staking
         }
 
 
-        function total_withdraw_reaward() view public returns(uint)
-        {
-            uint Temp = user[msg.sender].totalWithdraw_reward;
-            return Temp;
-        }
 
         function get_currTime() public view returns(uint)
         {
             return block.timestamp;
         }
         
-
-
 
         function Find_perdayShare(uint _day,uint _amount) public view returns(uint)
         {
@@ -489,6 +485,39 @@ contract GeeRaaf_Staking
             return sharePercentage;
         }
 
+        function total_withdraw_reaward() view public returns(uint)
+        {
+            uint Temp = user[msg.sender].totalWithdraw_reward;
+            return Temp;
+        }
+
+        function get_DaySupply(uint _day) public view returns(uint) 
+        {
+
+            uint _amount=initialSupply;
+
+            for(uint i=0;i<=_day;i++)
+            {
+                _amount+= (initialSupply*perDay_mintPercentage/100 ether);
+            }
+
+            return _amount;
+        }   
+
+        function get_CurrDaySupply() public view returns(uint) 
+        {
+        
+            uint _day = (block.timestamp - launch_time)/per_day_divider;
+            uint _amount = initialSupply;
+
+            for(uint i=0;i<=_day;i++)
+            {
+                _amount+= (initialSupply*perDay_mintPercentage/100 ether);
+            }
+
+            return _amount;
+        }
+        
        function withdrawFunds(uint _amount)  public
         {
             require(msg.sender==owner);
