@@ -97,11 +97,11 @@ const Brands = (props) => {
                 <div className="tw-w-full tw-flex-col tw-flex tw-justify-between tw-items-center">
                   <div className="tw-flex tw-justify-between tw-items-center tw-w-full tw-my-2">
                     <span className="tw-text-textColor tw-text-[9px] sm:tw-text-base">Total Earning</span>
-                    <span className="tw-text-textColor tw-text-[9px] sm:tw-text-base">{props.refEarning?props.refEarning[index]:0}</span>
+                    <span className="tw-text-textColor tw-text-[9px] sm:tw-text-base">{props.refEarning?Number(props.refEarning[index])/10**18:0}</span>
                   </div>
                   <div className="tw-flex tw-justify-between tw-items-center tw-w-full">
                     <span className="tw-text-textColor tw-text-[9px] sm:tw-text-base">Team</span>
-                    <span className="tw-text-textColor tw-text-[9px] sm:tw-text-base">{props.refEarning?props.refEarning[index]:0}</span>
+                    <span className="tw-text-textColor tw-text-[9px] sm:tw-text-base">{props.refEarning?Number(props.refCount[index]):0}</span>
                   </div>
                 </div>
               </div>
