@@ -1,0 +1,56 @@
+
+  body{
+    /* background-color: #111111 !important; */
+  }
+  .slick-arrow{
+     width: 40px  !important;
+     height: 40px !important;
+     background-color:#FFE247 !important;
+     display: flex !important;
+     justify-content: center !important;
+     align-items: center !important;
+  }
+
+  .slick-next {
+    right: -53px !important;
+}
+
+.slick-prev {
+  left: -53px !important;
+}
+
+  .slick-next:before {
+    content:url('./assets/images/arrow-down.png') !important;
+}
+
+.slick-prev:before {
+  content:url('./assets/images/arrow-left.png') !important;
+}
+
+.slick-slide{
+  /* margin: 6px !important; */
+}
+
+ 
+
+
+@media screen and (max-width:567px) {
+
+  .slick-next {
+    right: -24px !important;
+}
+
+.slick-prev {
+  left: -24px !important;
+}
+
+.slick-arrow{
+  width: 25px  !important;
+  height: 25px !important;
+  background-color:#FFE247 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+}
