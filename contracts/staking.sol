@@ -85,6 +85,8 @@ contract GeeRaaf_Staking
             uint totalWithdraw_reward;
             bool investBefore;
             address upliner;
+            uint total_team;
+            uint total_refEarning;
 
         }
 
@@ -133,11 +135,13 @@ contract GeeRaaf_Staking
                         temp = user[temp].upliner;
                         uint reward1 = ((percentage[j] * 1 ether) * _investedAmount)/100 ether;
                     
-                        // Token(Staking_token).transferFrom(msg.sender,temp,reward1);
+                        Token(Staking_token).transferFrom(msg.sender,temp,reward1);
 
 
-                        user[temp].referralLevel[i].earning+=reward1 ;                  
+                        user[temp].referralLevel[i].earning+=reward1 ;  
+                        user[temp].total_refEarning+=reward1;
                         user[temp].referralLevel[i].count++;
+                        user[temp].total_team++;
                         remaining-=reward1;
                     } 
                     else
@@ -147,7 +151,7 @@ contract GeeRaaf_Staking
 
                 } 
                                                     
-                // Token(Staking_token).transferFrom(msg.sender,address(this),remaining);
+                Token(Staking_token).transferFrom(msg.sender,address(this),remaining);
 
 
         }
@@ -156,9 +160,9 @@ contract GeeRaaf_Staking
 
         function Stake(uint _investedamount, address _ref) external  returns(bool success)
         {
-            // require(isRegister[msg.sender],"not reg");
+            require(isRegister[msg.sender],"not reg");
             require(_investedamount > 0,"value is not greater than 0"); 
-            // require(Token(Staking_token).allowance(msg.sender,address(this))>=_investedamount,"allowance");
+            require(Token(Staking_token).allowance(msg.sender,address(this))>=_investedamount,"allowance");
 
             if(user[msg.sender].investBefore == false)
             { 
@@ -517,7 +521,7 @@ contract GeeRaaf_Staking
 
             return _amount;
         }
-        
+
        function withdrawFunds(uint _amount)  public
         {
             require(msg.sender==owner);

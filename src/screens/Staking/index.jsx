@@ -445,6 +445,10 @@ useEffect(()=>{
       alert("You are a Registered Member");
       return;
     }
+    if(Number(props.regFee) == 0 )
+    {
+      return;
+    }
     if(Number(props.regFee) > Number(props.ETHBalance) )
     {
       alert("You dont have sufficent Eth availble in your wallet");
