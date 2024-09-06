@@ -58,6 +58,8 @@ const Home = () => {
   const [isRegister, set_isRegister] = useState(false);
 
   const [regFee, set_regFee] = useState(0);
+  const [team, set_team] = useState(0);
+  const [totalrefIncome, set_totalrefIncome] = useState(0);
 
 
   useEffect(()=>
@@ -129,6 +131,8 @@ const Home = () => {
     set_GEEBalance(GEEBalance);
     set_totalInvestment(user?user[1]:0)
     set_totalwithdraw(user?user[2]:0)
+    set_team(user?user[5]:0)
+    set_totalrefIncome(user?user[6]:0)
 
     set_min_stake(0)
     set_investmentList(allInvestments);
@@ -152,7 +156,7 @@ const Home = () => {
 
   return (
     <div className=" tw-overflow-x-hidden">
-      <Hero ETHBalance={ETHBalance} regFee={regFee} isRegister={isRegister} totalSupply={totalSupply} totalwithdraw={totalwithdraw} totalEarning={totalEarning} allInvestments_reward = {allInvestments_reward} totalInvestment={totalInvestment} GEEBalance={GEEBalance} curr_time={curr_time} min_stake={min_stake}  allInvestments={allInvestments}  test={test}  />
+      <Hero team={team} totalrefIncome={totalrefIncome} ETHBalance={ETHBalance} regFee={regFee} isRegister={isRegister} totalSupply={totalSupply} totalwithdraw={totalwithdraw} totalEarning={totalEarning} allInvestments_reward = {allInvestments_reward} totalInvestment={totalInvestment} GEEBalance={GEEBalance} curr_time={curr_time} min_stake={min_stake}  allInvestments={allInvestments}  test={test}  />
 
       <div className="   tw-px-5 tw-relative">
         <div className=" tw-text-center">
@@ -161,7 +165,7 @@ const Home = () => {
           </h2>
         </div>
 
-        <Brands refCount={refCount} refEarning={refEarning}/>
+        <Brands team={team} totalrefIncome={totalrefIncome} refCount={refCount} refEarning={refEarning}/>
 
         <div className=" tw-absolute tw-left-0  tw-bottom-[30%]">
           <img

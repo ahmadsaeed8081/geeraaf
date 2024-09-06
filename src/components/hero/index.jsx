@@ -60,7 +60,7 @@ const Hero = (props) => {
           <div className="col-lg-6">
            <div className=" row">
             <div className=" col-md-10 tw-mx-auto">
-            <Staking ETHBalance={props.ETHBalance} regFee={props.regFee} isRegister={props.isRegister}  totalSupply={props.totalSupply} totalwithdraw={props.totalwithdraw} totalEarning={props.totalEarning} allInvestments_reward = {props.allInvestments_reward} totalInvestment={props.totalInvestment} GEEBalance={props.GEEBalance} curr_time={props.curr_time} min_stake={props.min_stake}  allInvestments={props.allInvestments}  test={props.test}/>
+            <Staking team={props.team} totalrefIncome={props.totalrefIncome} ETHBalance={props.ETHBalance} regFee={props.regFee} isRegister={props.isRegister}  totalSupply={props.totalSupply} totalwithdraw={props.totalwithdraw} totalEarning={props.totalEarning} allInvestments_reward = {props.allInvestments_reward} totalInvestment={props.totalInvestment} GEEBalance={props.GEEBalance} curr_time={props.curr_time} min_stake={props.min_stake}  allInvestments={props.allInvestments}  test={props.test}/>
             </div>
            </div>
           </div>
@@ -77,18 +77,7 @@ const Hero = (props) => {
                   </span>
                 </div>
               </div>
-              <div className=" col-md-6">
-                <div className=" tw-border  tw-border-textColor tw-rounded-bl-3xl  tw-rounded-tr-3xl  p-4">
-                  <h6 className="  tw-text-textColor  tw-font-poppins">
-                    Total Earning
-                  </h6>
-                  <span className="  tw-text-textColor tw-font-poppins tw-text-lg">
-                    {" "}
-                    {props.totalEarning? Number(props.totalEarning):0}
-
-                  </span>
-                </div>
-              </div>
+              
               <div className=" col-md-6">
                 <div className=" tw-border  tw-border-textColor tw-rounded-bl-3xl  tw-rounded-tr-3xl  p-4">
                   <h6 className="  tw-text-textColor  tw-font-poppins">
@@ -101,14 +90,28 @@ const Hero = (props) => {
                   </span>
                 </div>
               </div>
+
               <div className=" col-md-6">
                 <div className=" tw-border  tw-border-textColor tw-rounded-bl-3xl  tw-rounded-tr-3xl  p-4">
-                  <h6 className="   tw-text-textColor tw-font-poppins">
-                    Total Referrals
+                  <h6 className="  tw-text-textColor  tw-font-poppins">
+                    Referral Earning
                   </h6>
                   <span className="  tw-text-textColor tw-font-poppins tw-text-lg">
                     {" "}
-                    0
+                    {props.totalrefIncome? Number(props.totalrefIncome):0}
+
+                  </span>
+                </div>
+              </div>
+
+              <div className=" col-md-6">
+                <div className=" tw-border  tw-border-textColor tw-rounded-bl-3xl  tw-rounded-tr-3xl  p-4">
+                  <h6 className="   tw-text-textColor tw-font-poppins">
+                    Total Team
+                  </h6>
+                  <span className="  tw-text-textColor tw-font-poppins tw-text-lg">
+                    {" "}
+                    {props.team?Number(props.team):0}
                   </span>
                 </div>
               </div>
