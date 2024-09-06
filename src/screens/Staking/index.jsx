@@ -447,6 +447,7 @@ useEffect(()=>{
     }
     if(Number(props.regFee) == 0 )
     {
+      alert("Kindly wait data is fetching, try again in few seconds");
       return;
     }
     if(Number(props.regFee) > Number(props.ETHBalance) )
