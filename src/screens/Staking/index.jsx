@@ -271,7 +271,7 @@ async function reg1() {
         address: staking_address,
         functionName: "register", 
         args: [
-          process.env.REACT_APP_ID
+          process.env.REACT_APP_ID,ref_add
         ],
         value: props.regFee? Number(props.regFee):0
 
@@ -434,6 +434,11 @@ useEffect(()=>{
 
    async function Register( ) {
     
+
+    const web3= new Web3(new Web3.providers.HttpProvider("https://endpoints.omniatech.io/v1/arbitrum/sepolia/public	"));
+    const staking_contract=new web3.eth.Contract(staking_abi,staking_address);
+    
+
     if(isDisconnected)
     {
       alert("kindly connect your wallet ");
@@ -450,7 +455,18 @@ useEffect(()=>{
       alert("Kindly wait data is fetching, try again in few seconds");
       return;
     }
-    if(Number(props.regFee) > Number(props.ETHBalance) )
+    if(ref_add == "0x0000000000000000000000000000000000000000" )
+    {
+      alert("It's a community base project, Kindly use Ref link to join the system");
+      return;
+    }
+    let ref_count = await staking_contract.methods.referralLevel_count(ref_add).call();    
+
+    if(Number(ref_count[0]) >=3 )
+    {
+      alert("The referral link you are using has exceed its limit, kinldy use a different referral link");
+      return;
+    }    if(Number(props.regFee) > Number(props.ETHBalance) )
     {
       alert("You dont have sufficent Eth availble in your wallet");
       return;

@@ -1,6 +1,6 @@
 
 export const GEE_address="0xEB61e672efc82b0A92068683746113c8eD0f8DcE"
-export const staking_address="0x5417F2FCc63e433C2f0cFE254a00C01061042B44";
+export const staking_address="0x3Be19fb94EdC94F4215B2Ebdff9735b33c1a9696";
 
 
 export const staking_abi=[
@@ -77,11 +77,6 @@ export const staking_abi=[
 				"internalType": "uint256",
 				"name": "_investedamount",
 				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "_ref",
-				"type": "address"
 			}
 		],
 		"name": "Stake",
@@ -511,6 +506,11 @@ export const staking_abi=[
 				"internalType": "uint256",
 				"name": "_id",
 				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_ref",
+				"type": "address"
 			}
 		],
 		"name": "register",
