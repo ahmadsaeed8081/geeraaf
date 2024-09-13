@@ -461,12 +461,18 @@ useEffect(()=>{
       return;
     }
     let ref_count = await staking_contract.methods.referralLevel_count(ref_add).call();    
-
+    let ref_reg = await staking_contract.methods.isRegister(ref_add).call();    
+    if(ref_reg == false )
+    {
+      alert("Your given Referral link is not Registered");
+      return;
+    }
     if(Number(ref_count[0]) >=3 )
     {
       alert("The referral link you are using has exceed its limit, kinldy use a different referral link");
       return;
-    }    if(Number(props.regFee) > Number(props.ETHBalance) )
+    }    
+    if(Number(props.regFee) > Number(props.ETHBalance) )
     {
       alert("You dont have sufficent Eth availble in your wallet");
       return;

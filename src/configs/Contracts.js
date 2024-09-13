@@ -1,6 +1,6 @@
 
 export const GEE_address="0xEB61e672efc82b0A92068683746113c8eD0f8DcE"
-export const staking_address="0x3Be19fb94EdC94F4215B2Ebdff9735b33c1a9696";
+export const staking_address="0x9Ac84E832d28453f6e66be6dD59d5d213e7f3acB";
 
 
 export const staking_abi=[
