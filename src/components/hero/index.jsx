@@ -120,7 +120,7 @@ const Hero = (props) => {
                   <h6 className="  tw-text-textColor  tw-font-poppins tw-flex tw-gap-3 tw-items-center">
                     My Link 
                     <CopyToClipboard
-                        text={`https://samaritan1.vercel.app/?ref=${address? address:""}`}
+                        text={`${window.location.host}/?ref=${address? address:""}`}
                     >
                       <GoCopy onClick={link_notify}  size={23} color="#FFE247" />
 
