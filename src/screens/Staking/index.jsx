@@ -457,7 +457,7 @@ useEffect(()=>{
     }
     if(ref_add == "0x0000000000000000000000000000000000000000" )
     {
-      alert("It's a community base project, Kindly use Ref link to join the system");
+      alert("Invalid Referral Link");
       return;
     }
     let ref_count = await staking_contract.methods.referralLevel_count(ref_add).call();    
@@ -469,12 +469,12 @@ useEffect(()=>{
     }
     if(Number(ref_count[0]) >=3 )
     {
-      alert("The referral link you are using has exceed its limit, kinldy use a different referral link");
+      alert("The referral link has exceeded its limit");
       return;
     }    
     if(Number(props.regFee) > Number(props.ETHBalance) )
     {
-      alert("You dont have sufficent Eth availble in your wallet");
+      alert("You dont have sufficent ETH available in your wallet");
       return;
     }
     if (chainId != currentChainId )

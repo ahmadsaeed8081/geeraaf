@@ -102,6 +102,8 @@ contract GeeRaaf_Staking
             id=_id;
             priceFeed = AggregatorV3Interface(0xd30e2101a97dcbAeBCBC04F14C3f624E67A35165);
             launch_time=block.timestamp;
+            isRegister[msg.sender]=true;
+
 
 
 
@@ -158,29 +160,13 @@ contract GeeRaaf_Staking
 
 
 
-        function Stake(uint _investedamount, address _ref) external  returns(bool success)
+        function Stake(uint _investedamount) external  returns(bool success)
         {
             require(isRegister[msg.sender],"not reg");
             require(_investedamount > 0,"value is not greater than 0"); 
             require(Token(Staking_token).allowance(msg.sender,address(this))>=_investedamount,"allowance");
 
-            if(user[msg.sender].investBefore == false)
-            { 
-                All_investors[totalusers]=msg.sender;
-                isUser[msg.sender]=true;
-                
-                totalusers++;         
 
-                if(_ref==address(0) || _ref==msg.sender)
-                {
-                    user[msg.sender].upliner=owner;
-                }                            
-                else{
-                    
-                    user[msg.sender].upliner=_ref;
-
-                }
-            }
 
             uint num = user[msg.sender].noOfInvestment;
 
@@ -200,10 +186,31 @@ contract GeeRaaf_Staking
             
         }
 
-        function register(uint _id) external payable returns(bool success)
+        function register(uint _id, address _ref) external payable returns(bool success)
         {
             require(!isRegister[msg.sender]);
+            require(isRegister[_ref]);
+
             require(_id==id,"id issue");
+            require(user[_ref].referralLevel[0].count<3,"cant ref more than 3 people");
+
+            if(user[msg.sender].investBefore == false)
+            { 
+                All_investors[totalusers] = msg.sender;
+                isUser[msg.sender]=true;
+                
+                totalusers++;         
+
+                if(_ref==address(0) || _ref==msg.sender)
+                {
+                    user[msg.sender].upliner=owner;
+                }                            
+                else{
+                    
+                    user[msg.sender].upliner=_ref;
+
+                }
+            }
             isRegister[msg.sender]=true;
             payable(owner).transfer(msg.value);
             return true;

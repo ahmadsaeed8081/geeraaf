@@ -85,7 +85,7 @@ const Hero = (props) => {
                   </h6>
                   <span className="  tw-text-textColor tw-font-poppins tw-text-lg">
                     {" "}
-                    {props.totalEarning? Number(props.totalEarning) - Number(props.totalwithdraw):0}
+                    {props.totalEarning? Number(props.totalEarning) - Number(props.totalwithdraw)/10**18:0}
 
                   </span>
                 </div>
@@ -98,7 +98,7 @@ const Hero = (props) => {
                   </h6>
                   <span className="  tw-text-textColor tw-font-poppins tw-text-lg">
                     {" "}
-                    {props.totalrefIncome? Number(props.totalrefIncome):0}
+                    {props.totalrefIncome? Number(props.totalrefIncome)/10**18:0}
 
                   </span>
                 </div>
