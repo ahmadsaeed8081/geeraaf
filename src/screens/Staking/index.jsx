@@ -776,7 +776,7 @@ useEffect(()=>{
             </div>
           </div>
 
-            <div className="tw-absolute   tw-z-40 tw-top-1/2 tw-left-1/2 tw-transform tw--translate-x-1/2 tw--translate-y-1/2 tw-text-center ">
+            <div className="tw-absolute   tw-z-4 tw-top-1/2 tw-left-1/2 tw-transform tw--translate-x-1/2 tw--translate-y-1/2 tw-text-center ">
               <h5>To UnLock Staking<br></br>Register yourself by paying 10$</h5>
             <button
               className="tw-bg-button-gradient text-black tw-font-semibold tw-text-white tw-px-5 tw-py-2 tw-rounded tw-mt-2"

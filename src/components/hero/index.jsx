@@ -122,7 +122,7 @@ const Hero = (props) => {
                     <CopyToClipboard
                         text={`${window.location.host}/?ref=${address? address:""}`}
                     >
-                      <GoCopy onClick={link_notify}  size={23} color="#FFE247" />
+                      <GoCopy onClick={link_notify}  size={23} color="#FFE247"  style={{ zIndex:"98987986" }}/>
 
                     </CopyToClipboard>
 

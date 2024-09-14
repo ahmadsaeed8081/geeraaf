@@ -135,7 +135,7 @@ const Header = () => {
         </div>
 
         <div
-          className="tw-text-3xl lg:tw-hidden tw-pt-2 tw-z-50"
+          className="tw-text-3xl lg:tw-hidden tw-pt-2 tw-z-50"style={{ zIndex:"89789798" }}
           onClick={() => setOpen(!open1)}
         >
           {open1 ? <MdOutlineClose color="black" /> : <MdMenu color="black" />}
@@ -146,7 +146,7 @@ const Header = () => {
           className={`
             lg:tw-hidden tw-z-40    tw-bg-white  tw-shadow-xl  tw-fixed tw-w-full tw-top-0 tw-overflow-y-auto tw-bottom-0 tw-leading-10 tw-py-10 
             tw-duration-500 ${open1 ? "tw-left-0 tw-bg-white " : "  tw-bg-white tw-left-[-100%]"}
-          `}
+          `}style={{ zIndex:"111" }}
         >
          
 
