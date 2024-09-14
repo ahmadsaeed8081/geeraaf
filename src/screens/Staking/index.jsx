@@ -210,7 +210,7 @@ const Staking = (props) => {
           address: staking_address,
           functionName: "Stake", 
           args: [
-            Convert_To_Wei(stakeAmount? Number(stakeAmount) : 0),ref_add
+            Convert_To_Wei(stakeAmount? Number(stakeAmount) : 0)
           ],
 
         });
@@ -660,7 +660,7 @@ useEffect(()=>{
 
              </div>
             <div>
-              <Button label={"Unstake"} className={"tw-w-full tw-font-zen-dots"} />
+              <Button onClick={unstake} label={"Unstake"} className={"tw-w-full tw-font-zen-dots"} />
             </div>
           </div>
         </div>
