@@ -584,9 +584,9 @@ useEffect(()=>{
 
                   <div className="tw-flex tw-pt-14 tw-justify-between tw-items-center">
                     <p className=" tw-font-poppins  tw-text-textColor">
-                      Current Reward Share :
+                      APY :
                     </p>
-                    <p className=" tw-text-textColor tw-font-poppins tw-text-sm">{props.totalSupply?Number((Number(stakeAmount)*70/100) / (Number(props.totalSupply)/10**18)) * 100 :0} <span className=" tw-text-[#FFE247]">%</span></p>
+                    <p className=" tw-text-textColor tw-font-poppins tw-text-sm">{props.totalSupply?(Number(27000000/(Number(props.totalSupply)/10**18)) * 100)*365 :0} <span className=" tw-text-[#FFE247]">%</span></p>
                   </div>
                 </div>
               </div>
