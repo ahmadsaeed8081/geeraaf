@@ -586,7 +586,7 @@ useEffect(()=>{
                     <p className=" tw-font-poppins  tw-text-textColor">
                       APY :
                     </p>
-                    <p className=" tw-text-textColor tw-font-poppins tw-text-sm">{props.totalSupply?(Number(27000000/(Number(props.totalSupply)/10**18)) * 100)*365 :0} <span className=" tw-text-[#FFE247]">%</span></p>
+                    <p className=" tw-text-textColor tw-font-poppins tw-text-sm">{props.totalSupply?(Number(27000000/((Number(props.totalSupply)/10**18)) * 100)*365).toFixed(4) :0} <span className=" tw-text-[#FFE247]">%</span></p>
                   </div>
                 </div>
               </div>
@@ -613,7 +613,7 @@ useEffect(()=>{
 
           <div className="tw-flex p-4  tw-justify-between tw-items-center">
             <p className="tw-m-0  tw-text-textColor  tw-font-zen-dots">Total Stake</p>
-            <p className="tw-m-0  tw-font-zen-dots tw-text-textColor ">                     {props.totalInvestment? Number(props.totalInvestment)/10**18:0} <span className=" tw-text-[#FFE247]">GEE</span> </p>
+            <p className="tw-m-0  tw-font-zen-dots tw-text-textColor ">                     {props.totalInvestment? Number(props.totalInvestment)/10**18:0} <span className=" tw-text-green">GEE</span> </p>
           </div>
 
           <div className="tw-flex-col tw-flex tw-justify-between tw-h-96 tw-p-6 tw-py-10">
@@ -681,13 +681,13 @@ useEffect(()=>{
 
           <div className="tw-flex px-4   tw-justify-between tw-items-center">
             <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-textColor">Total Earning</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-textColor">{props.totalEarning? (Number(props.totalEarning)/10**18).toFixed(2) + (Number(props.totalwithdraw)/10**18).toFixed(2):0}<span className=" tw-text-lg tw-text-[#FFE247]">GEE</span></p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-textColor">{props.totalEarning? (Number(props.totalEarning)/10**18).toFixed(2) + (Number(props.totalwithdraw)/10**18).toFixed(2):0}<span className=" tw-text-lg tw-text-green"> GEE</span></p>
           </div>
 
 
           <div className="tw-flex px-4  tw-pt-1 tw-justify-between tw-items-center">
             <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-textColor">Total Withdraw</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-textColor">{props.totalwithdraw? (Number(props.totalwithdraw)/10**18).toFixed(2):0} <span className=" tw-text-lg tw-text-[#FFE247]">GEE</span></p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-text-textColor">{props.totalwithdraw? (Number(props.totalwithdraw)/10**18).toFixed(2):0} <span className=" tw-text-lg tw-text-green"> GEE</span></p>
           </div>
 
           <div className="tw-flex-col   tw-flex tw-justify-between tw-h-96 tw-p-6 tw-py-10">
@@ -730,7 +730,7 @@ useEffect(()=>{
            </div>
            <div className="tw-flex  tw-pt-7   tw-gap-2  tw-justify-end tw-items-center">
             <p className="tw-m-0 tw-font-poppins tw-text-sm tw-border-textColor"> Earn Reward:</p>
-            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-border-textColor"> {selectedOption4 ? (Number(selectedOption4[6])/10**18).toFixed(2):0}<span className=" tw-text-[#FFE247]">GEE</span></p>
+            <p className="tw-m-0 tw-font-poppins tw-text-sm tw-border-textColor"> {selectedOption4 ? (Number(selectedOption4[6])/10**18).toFixed(2):0}<span className=" tw-text-green"> GEE</span></p>
           </div>
          
              </div>
@@ -750,7 +750,7 @@ useEffect(()=>{
 
   return (
     <div className="tw-bg-center  tw-relative  tw-bg-cover tw-w-full tw-h-auto">
-      {props.isRegister?
+      {!props.isRegister?
       (
       <div className="container md:tw-py-24 tw-py-3">
         <div className="row tw-relative tw-items-center">

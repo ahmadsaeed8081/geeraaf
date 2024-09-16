@@ -109,13 +109,13 @@ const Home = () => {
        let ref_earn = await staking_contract.methods.referralLevel_earning(address).call();    
        set_refCount(ref_count)
        set_refEarning(ref_earn)
-
     }
 
 
 
     //staking 
     let totalsupply = await staking_contract.methods.get_CurrDaySupply().call();    
+    alert("njiiubiuhi")
 
     let currTime = await staking_contract.methods.get_currTime().call();    
     let totalusers = await staking_contract.methods.totalusers().call();    
